@@ -1,0 +1,73 @@
+1) docker run -it --entrypoint=bash python:3.12.8
+pip -V
+pip 24.3.1 from /usr/local/lib/python3.12/site-packages/pip (python 3.12)
+
+24.3.1
+
+2)
+
+db:5432
+
+
+3) 
+SELECT count(1) FROM public.green_tripdata
+WHERE lpep_pickup_datetime >= '2019-10-01' AND lpep_dropoff_datetime < '2019-11-01'
+and trip_distance <= 1
+
+SELECT count(1) FROM public.green_tripdata
+WHERE lpep_pickup_datetime >= '2019-10-01' AND lpep_dropoff_datetime < '2019-11-01'
+and trip_distance > 1 AND trip_distance <= 3
+
+SELECT count(1) FROM public.green_tripdata
+WHERE lpep_pickup_datetime >= '2019-10-01' AND lpep_dropoff_datetime < '2019-11-01'
+and trip_distance > 3 AND trip_distance <= 7
+
+SELECT count(1) FROM public.green_tripdata
+WHERE lpep_pickup_datetime >= '2019-10-01' AND lpep_dropoff_datetime < '2019-11-01'
+and trip_distance > 7 AND trip_distance > 10
+
+SELECT count(1) FROM public.green_tripdata
+WHERE lpep_pickup_datetime >= '2019-10-01' AND lpep_dropoff_datetime < '2019-11-01'
+and trip_distance > 10
+
+104802;198924;109603;27678;35189
+
+4) 
+SELECT lpep_pickup_datetime ,max(trip_distance) FROM public.green_tripdata
+WHERE lpep_pickup_datetime >= '2019-10-01' AND lpep_dropoff_datetime < '2019-11-01'
+group by lpep_pickup_datetime
+order by 2 desc
+
+"2019-10-11 20:34:21"	95.78
+
+2019-10-11
+
+
+5) 
+SELECT lk."Zone" , sum(tr.total_amount)
+FROM public.green_tripdata tr join zone_lookup lk on lk."LocationID" = tr."PULocationID"
+WHERE date(lpep_pickup_datetime) = '2019-10-18'
+group by 1
+order by 2 desc
+limit 3
+
+East Harlem North, East Harlem South, Morningside Heights
+
+6)
+SELECT ld."Zone" , tr.tip_amount
+FROM public.green_tripdata tr join zone_lookup lk 
+	on lk."LocationID" = tr."PULocationID" 
+join zone_lookup ld
+	on ld."LocationID" = tr."DOLocationID"
+WHERE lpep_pickup_datetime >= '2019-10-01' AND lpep_dropoff_datetime < '2019-11-01'
+and lk."Zone" = 'East Harlem North'
+order by 2 desc
+
+JFK Airport
+
+7)
+Downloading the provider plugins and setting up backend,
+Generating proposed changes and auto-executing the plan
+Remove all resources managed by terraform`
+
+terraform init, terraform apply -auto-approve, terraform destroy
