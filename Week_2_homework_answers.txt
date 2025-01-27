@@ -1,0 +1,42 @@
+1) Within the execution for Yellow Taxi data for the year 2020 and month 12:
+ what is the uncompressed file size (i.e. the output file yellow_tripdata_2020-12.csv of the extract task)?
+
+ using the cloud storage to see the uploaded file it is 
+ 128.3 MB
+
+
+ 2) What is the rendered value of the variable file when the inputs taxi is set to green, year is set to 2020, 
+ and month is set to 04 during execution?
+
+ green_tripdata_2020-04.csv
+
+ 3) How many rows are there for the Yellow Taxi data for the year 2020?
+
+SELECT count(1) FROM `titanium-portal-449021-g8.zoomcamp.yellow_tripdata` WHERE  filename like "%2020%"
+
+24648499
+
+
+4) How many rows are there for the Green Taxi data for the year 2020?
+
+SELECT count(1) FROM `titanium-portal-449021-g8.zoomcamp.green_tripdata` WHERE  filename like "%2020%"
+
+1734051
+
+5) How many rows are there for the Yellow Taxi data for March 2021?
+
+SELECT count(1) FROM `titanium-portal-449021-g8.zoomcamp.yellow_tripdata` WHERE  filename like "%2021_03%"
+
+1925152
+
+6) How would you configure the timezone to New York in a Schedule trigger?
+
+The [time zone identifier] (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones\) (i.e. the second column 
+in [the Wikipedia table](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)\) to 
+use for evaluating the cron expression. Default value is the server default zone ID.
+Default value is : Etc/UTC
+
+according to wikipedia and trigger documentation timezone property the TZ identifier will be America/New_York
+
+Add a timezone property set to America/New_York in the Schedule trigger configuration
+
