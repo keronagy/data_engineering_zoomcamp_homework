@@ -47,7 +47,7 @@ from {{ source('raw_nyc_tripdata', 'ext_green_taxi' ) }}
 - `select * from dtc_zoomcamp_2025.raw_nyc_tripdata.ext_green_taxi`
 - `select * from dtc_zoomcamp_2025.my_nyc_tripdata.ext_green_taxi`
 - `select * from myproject.raw_nyc_tripdata.ext_green_taxi`
-<mark>- `select * from myproject.my_nyc_tripdata.ext_green_taxi`</mark>
+- ####  <mark> `select * from myproject.my_nyc_tripdata.ext_green_taxi`</mark>
 - `select * from dtc_zoomcamp_2025.raw_nyc_tripdata.green_taxi`
 
 
@@ -69,7 +69,7 @@ What would you change to accomplish that in a such way that command line argumen
 - Add `ORDER BY pickup_datetime DESC` and `LIMIT {{ var("days_back", 30) }}`
 - Update the WHERE clause to `pickup_datetime >= CURRENT_DATE - INTERVAL '{{ var("days_back", 30) }}' DAY`
 - Update the WHERE clause to `pickup_datetime >= CURRENT_DATE - INTERVAL '{{ env_var("DAYS_BACK", "30") }}' DAY`
-- Update the WHERE clause to `pickup_datetime >= CURRENT_DATE - INTERVAL '{{ var("days_back", env_var("DAYS_BACK", "30")) }}' DAY`
+- ####  <mark> Update the WHERE clause to `pickup_datetime >= CURRENT_DATE - INTERVAL '{{ var("days_back", env_var("DAYS_BACK", "30")) }}' DAY` </mark>
 - Update the WHERE clause to `pickup_datetime >= CURRENT_DATE - INTERVAL '{{ env_var("DAYS_BACK", var("days_back", "30")) }}' DAY`
 
 
@@ -85,7 +85,7 @@ Select the option that does **NOT** apply for materializing `fct_taxi_monthly_zo
 - `dbt run --select +models/core/dim_taxi_trips.sql+ --target prod`
 - `dbt run --select +models/core/fct_taxi_monthly_zone_revenue.sql`
 - `dbt run --select +models/core/`
-- `dbt run --select models/staging/+`
+- ####  <mark> `dbt run --select models/staging/+`</mark>
 
 
 ### Question 4: dbt Macros and Jinja
@@ -125,6 +125,10 @@ That all being said, regarding macro above, **select all statements that are tru
 - When using `stg`, it materializes in the dataset defined in `DBT_BIGQUERY_STAGING_DATASET`, or defaults to `DBT_BIGQUERY_TARGET_DATASET`
 - When using `staging`, it materializes in the dataset defined in `DBT_BIGQUERY_STAGING_DATASET`, or defaults to `DBT_BIGQUERY_TARGET_DATASET`
 
+### answer:
+    All except
+    - Setting a value for `DBT_BIGQUERY_STAGING_DATASET` env var is mandatory, or it'll fail to compile
+
 
 ## Serious SQL
 
@@ -149,7 +153,7 @@ Considering the YoY Growth in 2020, which were the yearly quarters with the best
 - green: {best: 2020/Q2, worst: 2020/Q1}, yellow: {best: 2020/Q2, worst: 2020/Q1}
 - green: {best: 2020/Q2, worst: 2020/Q1}, yellow: {best: 2020/Q3, worst: 2020/Q4}
 - green: {best: 2020/Q1, worst: 2020/Q2}, yellow: {best: 2020/Q2, worst: 2020/Q1}
-- green: {best: 2020/Q1, worst: 2020/Q2}, yellow: {best: 2020/Q1, worst: 2020/Q2}
+- ####  <mark> green: {best: 2020/Q1, worst: 2020/Q2}, yellow: {best: 2020/Q1, worst: 2020/Q2} </mark>
 - green: {best: 2020/Q1, worst: 2020/Q2}, yellow: {best: 2020/Q3, worst: 2020/Q4}
 
 
@@ -162,7 +166,7 @@ Considering the YoY Growth in 2020, which were the yearly quarters with the best
 Now, what are the values of `p97`, `p95`, `p90` for Green Taxi and Yellow Taxi, in April 2020?
 
 - green: {p97: 55.0, p95: 45.0, p90: 26.5}, yellow: {p97: 52.0, p95: 37.0, p90: 25.5}
-- green: {p97: 55.0, p95: 45.0, p90: 26.5}, yellow: {p97: 31.5, p95: 25.5, p90: 19.0}
+- ####  <mark>  green: {p97: 55.0, p95: 45.0, p90: 26.5}, yellow: {p97: 31.5, p95: 25.5, p90: 19.0} </mark>
 - green: {p97: 40.0, p95: 33.0, p90: 24.5}, yellow: {p97: 52.0, p95: 37.0, p90: 25.5}
 - green: {p97: 40.0, p95: 33.0, p90: 24.5}, yellow: {p97: 31.5, p95: 25.5, p90: 19.0}
 - green: {p97: 55.0, p95: 45.0, p90: 26.5}, yellow: {p97: 52.0, p95: 25.5, p90: 19.0}
@@ -182,18 +186,9 @@ Now...
 
 For the Trips that **respectively** started from `Newark Airport`, `SoHo`, and `Yorkville East`, in November 2019, what are **dropoff_zones** with the 2nd longest p90 trip_duration ?
 
-- LaGuardia Airport, Chinatown, Garment District
+- ####  <mark>  LaGuardia Airport, Chinatown, Garment District </mark>
 - LaGuardia Airport, Park Slope, Clinton East
 - LaGuardia Airport, Saint Albans, Howard Beach
 - LaGuardia Airport, Rosedale, Bath Beach
 - LaGuardia Airport, Yorkville East, Greenpoint
 
-
-## Submitting the solutions
-
-* Form for submitting: https://courses.datatalks.club/de-zoomcamp-2025/homework/hw4
-
-
-## Solution 
-
-* To be published after deadline
